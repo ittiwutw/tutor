@@ -17,7 +17,7 @@ import { InfoDataProvider } from '../../providers/info-data/info-data';
 })
 export class SubjectPage {
 
-  subjectId: String = "";
+  subjectName: String = "";
   subjectKey: String = "";
   chapterList: any;
   chapterData: any;
@@ -27,7 +27,7 @@ export class SubjectPage {
   ionViewDidLoad() {
 
 
-    this.subjectId = this.navParams.get("subjectId");
+    this.subjectName = this.navParams.get("subjectName");
     this.subjectKey = this.navParams.get("subjectKey");
     console.log(this.subjectKey);
 
@@ -35,9 +35,23 @@ export class SubjectPage {
       this.chapterData = result;
     });
 
-    this.chapterList = [
-      { name: "On Board Safety & Security 1", key: "1-1" },
-      { name: "On Board Safety & Security 2", key: "1-2" }]
+    if (this.subjectKey == "1") {
+      this.chapterList = [
+        { name: "On Board Safety & Security 1", key: "1-1" },
+        { name: "On Board Safety & Security 2", key: "1-2" }]
+    } else if (this.subjectKey == "2") {
+      this.chapterList = [
+        { name: "Personality Development & Grooming 1", key: "2-1" },
+        { name: "Personality Development & Grooming 2", key: "2-2" },
+        { name: "Personality Development & Grooming 3", key: "2-3" },
+        { name: "Personality Development & Grooming 4", key: "2-4" },
+        { name: "Personality Development & Grooming 5", key: "2-5" },
+        { name: "Personality Development & Grooming 6", key: "2-6" },
+        { name: "Personality Development & Grooming 7", key: "2-7" },
+        { name: "Personality Development & Grooming 8", key: "2-8" },
+        { name: "Personality Development & Grooming 9", key: "2-9" }]
+    }
+
   }
 
   itemSelected(chapterData, chapterKey, chapterName) {

@@ -24,13 +24,9 @@ export class TestListPage {
     console.log('ionViewDidLoad TestListPage');
   }
 
-  onClickItem(testId) {
-    this.navCtrl.push(PreTestPage, { testId: testId });
-  }
-
-  getTestData(testId, type) {
-    this.infoData.getInfoData(testId).subscribe(result => {
-      this.navCtrl.push(PreTestPage, { data: result, type: type });
+  selectTest(subjectName, type) {
+    this.infoData.getInfoData(subjectName).subscribe(result => {
+      this.navCtrl.push(PreTestPage, { data: result, type: type, subjectName: subjectName });
     });
   }
 

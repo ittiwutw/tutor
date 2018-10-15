@@ -1,8 +1,8 @@
 export const config = {
-    apiKey: "AIzaSyAmJ_kd7klAiDUFt42OVd15FssG0fUVBuE",
-    authDomain: "tutorapp-d74b8.firebaseapp.com",
-    databaseURL: "https://tutorapp-d74b8.firebaseio.com",
-    projectId: "tutorapp-d74b8",
-    storageBucket: "tutorapp-d74b8.appspot.com",
-    messagingSenderId: "972130892696"
+    apiKey: "AIzaSyAe8_yDDprCu05SypCev1o6MzOqXRip_fc",
+    authDomain: "tutor-bf9ed.firebaseapp.com",
+    databaseURL: "https://tutor-bf9ed.firebaseio.com",
+    projectId: "tutor-bf9ed",
+    storageBucket: "tutor-bf9ed.appspot.com",
+    messagingSenderId: "111362925101"
   };

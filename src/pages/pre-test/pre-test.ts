@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { TestListPage } from '../test-list/test-list'
 
 
 /**
@@ -17,20 +19,104 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PreTestPage {
 
   testData = [];
-  no1: any;
-  no2: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(navParams.get("data"));
+  testerName: string = "";
+  type: string = "";
+  subject: string = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase, private alertCtrl: AlertController) {
 
-    this.setData(navParams.get("data"), navParams.get("type"));
+    this.type = navParams.get("type");
+    this.subject = navParams.get("subjectName");
+
+    this.setData(navParams.get("data"), this.type);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PreTestPage');
+
+    let alert = this.alertCtrl.create({
+      title: 'You have 3 Mins',
+      subTitle: 'Please....',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.setTimeout();
+          }
+        }
+      ],
+      enableBackdropDismiss: false
+    });
+    alert.present();
+  }
+
+  setTimeout() {
+    setTimeout(() => {
+      this.presentPrompt();
+    }, 30000);
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Time out!!',
+      message: 'Enter your name for submission.',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Your name'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Submit',
+          handler: data => {
+            if (data.name) {
+              this.testerName = data.name;
+              this.submit();
+              this.navCtrl.setRoot(TestListPage);
+            } else {
+              return false;
+            }
+
+          }
+        }
+      ],
+      enableBackdropDismiss: false
+    });
+    alert.present();
   }
 
   submit() {
-    //console.log(this.no1)
+    let setData = {
+      name: this.testerName,
+      subject: this.subject,
+      type: this.type,
+      ans: this.setSelectedAns(),
+      correct: this.isCorrect()
+    }
+
+    this.db.list("/testSubmit").push(setData);
+  }
+
+  setSelectedAns() {
+    let chooses = [];
+
+    this.testData.forEach(element => {
+      chooses.push(element.choose);
+    });
+
+    return chooses;
+  }
+
+  isCorrect() {
+    let score = 0;
+
+    this.testData.forEach(element => {
+      if (element.choose == element.ans) {
+        score = score + 1;
+      }
+    });
+
+    return score;
+
   }
 
   setData(data, type) {
@@ -41,7 +127,7 @@ export class PreTestPage {
         model: data["" + type][i]["model"],
         question: data["" + type][i]["question"],
         choice: this.setChoices(data["" + type][i]["choice"]),
-        ans: data["" + type][i]["question"],
+        ans: data["" + type][i]["ans"],
         choose: ''
       }
       this.testData.push(setData);

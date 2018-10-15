@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -14,10 +14,11 @@ import { ChapterPage } from '../pages/chapter/chapter';
 import { TestListPage } from '../pages/test-list/test-list';
 import { PreTestPage } from '../pages/pre-test/pre-test';
 import { PostTestPage } from '../pages/post-test/post-test';
+import { ProjectPage } from '../pages/project/project';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AngularFireModule} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 import { config } from './../firebase_cfg/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { InfoDataProvider } from '../providers/info-data/info-data';
@@ -30,10 +31,11 @@ import { InfoDataProvider } from '../providers/info-data/info-data';
     HomePage,
     TabsPage,
     SubjectPage,
-    ChapterPage, 
-    TestListPage, 
-    PreTestPage, 
-    PostTestPage
+    ChapterPage,
+    TestListPage,
+    PreTestPage,
+    PostTestPage,
+    ProjectPage
   ],
   imports: [
     BrowserModule,
@@ -51,10 +53,11 @@ import { InfoDataProvider } from '../providers/info-data/info-data';
     HomePage,
     TabsPage,
     SubjectPage,
-    ChapterPage, 
-    TestListPage, 
-    PreTestPage, 
-    PostTestPage
+    ChapterPage,
+    TestListPage,
+    PreTestPage,
+    PostTestPage,
+    ProjectPage
   ],
   providers: [
     StatusBar,

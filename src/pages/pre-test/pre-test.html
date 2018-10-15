@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Pre-test Subject 1</ion-title>
+    <ion-title>{{type}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h1>Onboard Safety and Security</h1>
+  <h1 text-center>{{subject}}</h1>
 
   <ion-card *ngFor="let info of testData;let i=index">
     <ion-card-header text-wrap>
@@ -46,8 +46,14 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+  <br>
 
-  <button ion-button block (click)="submit()">
+  <p>Input your name for submission</p>
+  <ion-item>
+    <ion-label color="primary">Name</ion-label>
+    <ion-input placeholder="First name and Last name" [(ngModel)]="testerName"></ion-input>
+  </ion-item>
+  <button ion-button block (click)="submit()" *ngIf="testerName">
     submit
   </button>
 </ion-content>

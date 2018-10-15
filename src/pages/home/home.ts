@@ -12,9 +12,9 @@ export class HomePage {
 
   }
 
-  onClickSubject(subjectId, key) {
+  onClickSubject(subjectName, key) {
     console.log(key);
-    this.navCtrl.push(SubjectPage, { subjectId: subjectId, subjectKey: key });
+    this.navCtrl.push(SubjectPage, { subjectName: subjectName, subjectKey: key });
   }
 
 }
